@@ -5,25 +5,30 @@
 ## Makefile
 ##
 
-CC		= gcc
-SRC		= *.c
+CC			= gcc
 
-NAME	= parse
+LIBPATH		= src/lib/my
 
-CFLAGS	 = -W -Wall -Wextra -Iinclude -Llib -lmy -g3
+CALCSRC		= src/calculus/*.c
+PARSESRC	= src/parsing/*.c
+GLOBALSRC	= src/*.c
+
+NAME		= parse
+
+CFLAGS	 	= -W -Wall -Wextra -Isrc/include -Lsrc/lib -lmy -g3
 
 all:
-	make -C lib/my all
-	$(CC) $(SRC) calculus/$(SRC) parsing/$(SRC) $(CFLAGS) -o $(NAME)
+	make -C $(LIBPATH) all
+	$(CC) $(GLOBALSRC) $(PARSESRC) $(CALCSRC) $(CFLAGS) -o $(NAME)
 
 clean:
-	make -C lib/my clean
+	make -C $(LIBPATH) clean
 	$(RM) *~
 	$(RM) *.o
 	$(RM) #*#
 
 fclean: clean
-	make -C lib/my fclean
+	make -C $(LIBPATH) fclean
 	$(RM) $(NAME)
 
 re: fclean all

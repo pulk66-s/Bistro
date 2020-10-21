@@ -5,7 +5,7 @@
 ** all parse file
 */
 
-#include "include/include.h"
+#include "../include/include.h"
 #include <stdio.h>
 
 static int is_nb(char *str)
